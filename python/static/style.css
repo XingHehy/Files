@@ -1,0 +1,36 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.folder {
+    font-weight: bold;
+    background: url(folder.svg) no-repeat;
+    background-size: 20px;
+    padding-left: 25px;
+}
+
+.file {
+    font-weight: normal;
+    background: url(file.svg) 0px -1px no-repeat;
+    background-size: 20px;
+    padding-left: 25px;
+}

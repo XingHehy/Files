@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File List</title>
+    <meta charset="UTF-8">
+	<link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <table width="620px" border="0px" cellpadding="5" cellspacing="1">
+        <caption><h1>File List</h1></caption>
+        <thead>
+            <tr>
+                <td>路径：
+                    {% if folder_path %}
+                        <a href="/">root</a>
+                        {% for folder in folder_path %}
+                            / <a href="{{ folder.href }}">{{ folder.name }}</a>
+                        {% endfor %}
+                    {% endif %}
+                </td>
+                <td colspan="2">
+                    <a style="color:red;text-decoration: underline;" href="{{ url_for('upload_file') }}{{ path }}">Upload</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 350px;">名称</td>
+                <td style="width: 88px;">大小</td>
+                <td>时间</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for file_info in files_info %}
+        
+            {% if file_info.is_directory %}
+                <tr>
+                    <td>
+                        <a class="folder" href="{{ file_info.file }}" title="{{ file_info.filename }}">{{ file_info.filename }}</a>
+                    </td>
+                    <td>
+                            <span class="file-size">{{ file_info.filesize }}</span>
+                    </td>
+                    <td>
+                            <span class="file-time">{{ file_info.file_time }}</span>
+                    </td>
+                </tr>
+                {% endif %}
+        {% endfor %}
+        {% for file_info in files_info %}
+            {% if not file_info.is_directory %}
+                <tr>
+                    <td style="max-width: 350px;white-space: nowrap;overflow: hidden; text-overflow: ellipsis;">
+                        <a class="file" href="{{ file_info.file }}" title="{{ file_info.filename }}">{{ file_info.filename }}</a>
+                    </td>
+                     <td>
+                            <span class="file-size">{{ file_info.filesize }}</span>
+                    </td>
+                    <td>
+                        <span class="file-time">{{ file_info.file_time }}</span>
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

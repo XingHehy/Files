@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Upload File</title>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+  <form action="{{ url_for('upload_file' , filepath=filepath) }}" method="post" enctype="multipart/form-data">
+  <table width="620px" border="0px" cellpadding="5" cellspacing="1">
+    <caption>
+      <h1>Upload File</h1>
+    </caption>
+    <thead>
+      <tr>
+        <td>
+          To <a>{{filepath}}</a>
+        </td>
+        <td>
+          <a style="color:red;text-decoration: underline;" href="{{ url_for('list_files') }}">Home</a>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="width: 350px;">
+          <input type="file" name="file">
+        </td>
+        <td style="width: 88px;">
+          <input type="submit" value="Upload">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </form>
+</body>
+
+</html>
